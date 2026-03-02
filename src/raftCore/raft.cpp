@@ -1013,26 +1013,17 @@ void Raft::init(std::vector<std::shared_ptr<RaftRpcUtil>> peers, int me, std::sh
 
   m_mtx.unlock();
 
-  m_ioManager = std::make_unique<monsoon::IOManager>(FIBER_THREAD_NUM, FIBER_USE_CALLER_THREAD);
-
   // start ticker fiber to start elections
   // 启动三个循环定时器
-  // todo:原来是启动了三个线程，现在是直接使用了协程，三个函数中leaderHearBeatTicker
-  // 、electionTimeOutTicker执行时间是恒定的，applierTicker时间受到数据库响应延迟和两次apply之间请求数量的影响，这个随着数据量增多可能不太合理，最好其还是启用一个线程。
-  m_ioManager->scheduler([this]() -> void { this->leaderHearBeatTicker(); });
-  m_ioManager->scheduler([this]() -> void { this->electionTimeOutTicker(); });
-  m_ioManager->scheduler([this]() -> void { this->applierTicker(); });
-  // std::thread t3(&Raft::applierTicker, this);
-  // t3.detach();
 
-  // std::thread t(&Raft::leaderHearBeatTicker, this);
-  // t.detach();
-  //
-  // std::thread t2(&Raft::electionTimeOutTicker, this);
-  // t2.detach();
-  //
-  // std::thread t3(&Raft::applierTicker, this);
-  // t3.detach();
+  std::thread t(&Raft::leaderHearBeatTicker, this);
+  t.detach();
+  
+  std::thread t2(&Raft::electionTimeOutTicker, this);
+  t2.detach();
+  
+  std::thread t3(&Raft::applierTicker, this);
+  t3.detach();
 }
 
 std::string Raft::persistData() {

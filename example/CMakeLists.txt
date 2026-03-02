@@ -1,4 +1,3 @@
-add_subdirectory(fiberExample)
 
 add_subdirectory(rpcExample)
 
