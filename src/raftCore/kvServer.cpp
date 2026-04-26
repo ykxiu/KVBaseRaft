@@ -395,6 +395,11 @@ KvServer::KvServer(int me, int maxraftstate, std::string nodeInforFileName, shor
   auto snapshot = persister->ReadSnapshot();
   if (!snapshot.empty()) {
     ReadSnapShotToInstall(snapshot);
+    m_lastSnapShotRaftLogIndex = m_raftNode->GetCommitIndex();
+    {
+      std::lock_guard<std::mutex> lk(m_kvApplyCvMtx);
+      m_lastKVApplied = m_lastSnapShotRaftLogIndex;
+    }
   }
   std::thread t2(&KvServer::ReadRaftApplyCommandLoop, this);
   t2.join();  //由於ReadRaftApplyCommandLoop一直不會結束，达到一直卡在这的目的

@@ -779,10 +779,6 @@ CMakeFiles/skip_list_on_raft.dir/src/raftCore/kvServer.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
  /home/kai/KVstorageBaseRaft-cpp/src/raftCore/include/ApplyMsg.h \
  /home/kai/KVstorageBaseRaft-cpp/src/raftCore/include/Persister.h \
- /usr/include/c++/11/fstream \
- /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
- /usr/include/c++/11/bits/fstream.tcc \
  /home/kai/KVstorageBaseRaft-cpp/src/common/include/config.h \
  /home/kai/KVstorageBaseRaft-cpp/src/raftCore/include/raftRpcUtil.h \
  /home/kai/KVstorageBaseRaft-cpp/src/raftRpcPro/include/raftRPC.pb.h \
@@ -817,7 +813,10 @@ CMakeFiles/skip_list_on_raft.dir/src/raftCore/kvServer.cpp.o: \
  /usr/include/c++/11/bits/deque.tcc /usr/include/c++/11/bits/stl_queue.h \
  /home/kai/KVstorageBaseRaft-cpp/src/common/include/config.h \
  /home/kai/KVstorageBaseRaft-cpp/src/skipList/include/skipList.h \
- /usr/include/c++/11/shared_mutex \
+ /usr/include/c++/11/fstream \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/shared_mutex \
  /home/kai/KVstorageBaseRaft-cpp/src/rpc/include/rpcprovider.h \
  /usr/local/include/muduo/net/EventLoop.h \
  /usr/local/include/muduo/base/Mutex.h \
